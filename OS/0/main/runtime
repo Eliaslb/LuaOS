@@ -1,0 +1,54 @@
+--If advanced computer
+os.loadAPI(draw)
+
+os.pullEvent = os.pullEventRaw()
+
+
+while true do
+    term.clear()
+    term.setCursorPos(1,1)
+    
+    --Clock
+    daysFromStart = os.clock()
+    time = os.time()
+    
+    --Knappar
+    local e = {os.pullEvent()}
+    
+    mouseX = e[3]
+    mouseY = e[4]
+
+    if e[1]=="mouse_click" and e[2]==1 then
+
+        if e[3] >=1 and e[3] <=4 and e[4]==2 then
+
+        --Apps
+
+        elseif e[3] >=8 and e[3] <=12 and e[4]==2 then
+
+        --Media
+
+        elseif e[3] >=16 and e[3] <=20 and e[4]==2 then
+
+        --Games
+
+        elseif e[3] >=24 and e[3] <=30 and e[4]==2 then
+
+        --Network
+
+        elseif e[3] >=34 and e[3] <=39 and e[4]==2 then
+
+        --System
+        
+        elseif e[3] >=40 and e[3] <=41 and e[4]==2 then
+        
+        -- +
+        --Ny flik med most used
+
+        end
+    end   
+    
+     
+    --Rita 
+    drawMainRuntime()
+end

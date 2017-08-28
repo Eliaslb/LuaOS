@@ -1,0 +1,73 @@
+local tArgs = {...}
+
+--Check for prerequisites
+if fs.getFreeSpace("/") <= 300000 then   
+   error("Not enough free space! ELBOS Needs more than 300kb")     
+end
+
+if not fs.exists("/disk/utils") then
+   term.setCursorPos(1,1)
+   write("Don't have a disk? Do you want to install from pastebin instead? (Y/N)") 
+   local noDisk = read()
+   
+   if noDisk == "Y" then
+    for i=1, #OSFiles do
+        shell.run("pastebin","get",..OSFilesPB,..OSFiles)
+    end
+   else
+    return
+   end
+   
+end
+
+term.clear()
+os.loadAPI("/disk/main/globals")
+
+term.setCursorPos(1,1)
+print("Welcome to the ELBOS installer, for version: ", version)
+
+term.setCursorPos(1,4)
+print("Before you can use the system, you must answer some questions")
+
+sleep(4)
+
+term.clear()
+
+term.setCursorPos(1,1)
+write("Set your computer name: ")
+local name = read()
+
+os.setComputerLabel(name, "s Computer")
+
+write("Do you have an advanced computer? (Y/N)")
+local advanced = read()
+
+if advanced == "Y" then
+    isAdvanced = true
+else
+    isAdvanced = false    
+end
+
+write("Do you have a monitor? (Side or No) ")
+local monitorside = read()
+sleep(2)
+
+term.clear()
+
+term.setCursorPos(1,1)
+
+print("Starting install")
+
+shell.setDir("/")
+
+fs.makeDir("/OS")
+
+fs.copy("/disk/","/OS/")
+
+sleep(3)
+
+term.setCursorPos(1,1)
+
+print("Finished, rebooting")
+
+os.reboot()

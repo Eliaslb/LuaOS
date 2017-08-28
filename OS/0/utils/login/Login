@@ -1,0 +1,68 @@
+term.clear()
+os.loadAPI("/OS/main/globals")
+
+
+
+--Login
+
+if not fs.exists("/OS/data/usernames") or not fs.exists("/OS/data/passwords")
+    createUser()    
+end
+
+local usernamefile = fs.open("/OS/data/username",r)
+local passwordfile = fs.open("/OS/data/password",r)
+
+os.pullEvent = os.pullEventRaw -- Prevents CTRL+T shortcut
+
+term.clear() 
+term.setCursorPos(1, 1) 
+
+username = usernamefile.readLine()
+password = passwordfile.readLine()  
+
+write("Username: ")
+user = read()
+
+write("Password: ")
+pass = read('*') 
+
+if user == username and pass == password then
+  access = true
+end
+
+
+if access == true then
+    print("Logging in...")
+    sleep(1)
+    print("Welcome "..user)
+    
+    os.run("/OS/main/main") --Start computer
+else
+    print("Incorrect username and password combination")
+    sleep(2)
+    os.reboot()
+end
+
+
+--Create New account
+
+function createUser()
+    local pswrdfile = fs.open("/OS/data/password",a)
+    local usrnmefile = fs.open("/OS/data/username",a)
+    
+    term.clear()
+    term.setCursorPos(1,1)
+    write("New username: ")
+    local usrnme  = read()
+    
+    write("New password: ")
+    local pswrd  = read()
+    
+    usrnmefile.write(usrnme)
+    pswrdfile.write(pswrd)
+    
+    pswrdfile.close()
+    usrnmefile.close()
+    
+    os.reboot()
+end

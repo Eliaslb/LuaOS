@@ -1,0 +1,19 @@
+function drawMainRuntime()
+    term.setBackgroundColor(bgColor)
+    drawTopUI()
+end
+
+function drawTopUI()
+    local formattedTime = textutils.formatTime(time, twentyFourHour)
+    paintutils.drawLine(1,2,51,2,color.lightGray)
+    paintutils.drawLine(1,1,51,1,color.lightBlue)
+    
+    term.setCursorPos(1,1)   
+    print(shell.path())    
+    
+    term.setCursorPos(1,2) 
+    print("Apps / Media / Games / Network / System +")
+    
+    term.setCursorPos(45,1)
+    print(formattedTime)
+end

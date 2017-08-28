@@ -1,0 +1,15 @@
+
+--Login
+if fs.exists("/OS/") then
+  
+  shell.run("/OS/utils/login/Login")
+  
+end
+
+
+--Install from disk
+if not fs.exists("/OS/") then
+
+  shell.run("/disk/utils/setup/Setup")
+
+end

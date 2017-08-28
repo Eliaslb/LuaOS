@@ -1,0 +1,7 @@
+--Here, all functions will be running during runtime
+
+if isAdvanced == true then --Runtime with advanced computer, color and touchscreen
+    os.run("/OS/main/runtime")
+else --Not advanced computer, without color and touchscreen
+    os.run("/OS/main/runtimebasic")
+end

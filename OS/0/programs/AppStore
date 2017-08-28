@@ -1,0 +1,11 @@
+function getFromPastebin(name)
+    shell.run("pastebin", "get", ..name)    
+end
+
+function runFromPasteBin(name)
+    shell.run("pastebin", "run", ..name)
+end
+
+function makeApp(name, code)
+    shell.run("pastebin", "put", ..code, ..name)
+end

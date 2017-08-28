@@ -1,0 +1,62 @@
+--Variables
+_G version = 1.0
+_G running = true
+_G isAdvanced = nil
+_G bgColor = color.blue
+_G textColor = color.white
+_G currentDir = nil
+_G twentyFourHour = false --If 24 hour clock
+_G time = nil
+_G daysFromStart = nil
+_G programPath = {"/","/OS/programs/","/OS/programs/Games/","/OS/programs/Apps/","/OS/programs/Media/","/OS/programs/CC/"}
+_G mouseX = nil
+_G mouseY = nil
+_G OSFiles = {"/OS/main/runtime","/OS/main/runtimebasic","/OS/main/main","/OS/main/draw","/OS/main/globals","/OS/programs/AppStore","/OS/utils/setup/Setup","/OS/utils/login/Login","/OS/utils/startup/startup"}
+_G OSFilesPB = {}
+_G OSFilesName = {"runtime","runtimebasic","main","draw","globals","AppStore","Setup","Login","startup"}
+_G apis = fs.list("/OS/main/apis")
+--Fucntions
+
+function loadApis()
+    for i=1, #apis do 
+        os.loadAPI(apis[i]) 
+    end 
+end
+
+function writeConfig()
+    local configfile = fs.open("/OS/main/config",a)    
+    --Version
+    --isAdvanced
+    --Have monitor
+    --BG Colour
+    --Program path?
+    configfile.close()
+end
+
+function loadConfig()
+    local configfile = fs.open("/OS/main/config",r)
+    
+    
+    
+    configfile.close()
+end
+
+function terminate()
+   term.clear()
+   term.setCursorPos(1,1)
+   if isAdvanced == true then
+    os.run("/OS/main/runtime")
+   else 
+    os.run("/OS/main/runtimebasic")
+   end
+end
+
+
+function searchFile(name) --Checks in every searchpath for something with the name
+    local searchplacesnum = table.getn(programPath)  
+    for i=0,searchplacesnum,+1 do    
+        if fs.exists(programPath[i]..name) then
+           shell.run(programPath[i]..name) 
+        end        
+    end  
+end

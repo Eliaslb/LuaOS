@@ -1,0 +1,7 @@
+function Encrypt(file)
+
+end
+
+function Dectrypt(file)
+    
+end
